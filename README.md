@@ -4,121 +4,69 @@ A comprehensive academic management system for the **CSE Department**, built wit
 
 ---
 
-## 🌐 Live URL
+## 📋 Description
 
->[https://smart-cse-three.vercel.app](https://smart-cse-three.vercel.app)
+Smart CSE is a full-stack academic management platform for the CSE department. It provides role-based portals for students, teachers, and admins — covering everything from attendance and results to class schedules, notices, and analytics. Access is enforced at the middleware level using NextAuth.js.
 
 ---
 
-## ✨ Features by Role
+## ✨ Features
 
-### 👨‍🎓 Student (`/dashboard`)
+### 👨‍🎓 Student
+
 - View class schedules, results, and notices
-- Submit assignments and track deadlines
-- Access course materials and resources
-- View attendance records
-- Rate teachers and give feedback
+- View attendance records and track progress
+- Rate teachers and give course feedback
 - Download transcripts and reports (PDF)
 
-### 👨‍🏫 Teacher (`/teacher`)
+### 👨‍🏫 Teacher
+
 - Manage courses and class schedules
-- Upload assignments and study materials
 - Mark and manage student attendance
 - Publish results and grades
-- View student feedback and ratings
 - Post notices and announcements
 
-### 🛡️ Admin (`/admin`)
-- Manage all students and teacher accounts
+### 🛡️ Admin
+
+- Manage all student and teacher accounts
 - Oversee department-wide schedules and events
 - Monitor and publish results
-- Handle notices and announcements
 - View analytics and department statistics
-- Upload and manage gallery/media via Cloudinary
+- Upload and manage media via Cloudinary
 
 ---
 
-## 🔐 Role-Based Access Control
+## 🌐 Live URL
 
-Access is enforced at the middleware level using **NextAuth.js**:
-
-| Role | Home Route | Access |
-|---|---|---|
-| `student` | `/dashboard` | Student portal only |
-| `teacher` | `/teacher` | Teacher portal only |
-| `admin` | `/admin` | Admin panel only |
-
-Unauthenticated users are redirected to `/login`. Authenticated users are redirected to their role-specific home if they attempt to access an unauthorized route.
+> [https://smart-cse-three.vercel.app](https://smart-cse-three.vercel.app)
 
 ---
 
-## 🛠️ Tech Stack
+## 🔑 Credentials
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 + tailwind-merge |
-| UI Components | shadcn/ui (Radix UI primitives) |
-| Auth | NextAuth.js |
-| Forms | React Hook Form + Zod |
-| Data Fetching | Axios (with auto sign-out on 401/403) |
-| Charts | Recharts |
-| Animations | Framer Motion |
-| File Storage | Cloudinary + next-cloudinary |
-| PDF Export | jsPDF + jsPDF-AutoTable |
-| Email | EmailJS |
-| Date Handling | date-fns, react-day-picker |
-| Notifications | React Hot Toast, Sonner, SweetAlert2 |
-| Ratings | react-simple-star-rating |
-| Analytics | Vercel Analytics |
-| Theme | next-themes (dark/light mode) |
+| Role    | Email                  | Password |
+| ------- | ---------------------- | -------- |
+| Student | `student@smartcse.com` | `123456` |
+| Teacher | `teacher@smartcse.com` | `123456` |
+| Admin   | `admin@smartcse.com`   | `123456` |
+
+> Update with your real credentials before sharing.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation & Setup
 
 ### Prerequisites
 
 - **Node.js** v18+
 - **npm** / yarn / pnpm
 
-### Installation
+### Steps
 
 ```bash
-git clone https://github.com/your-username/smart-cse.git
+git clone https://github.com/imamhossenbu/smart-cse.git
 cd smart-cse
 npm install
-```
-
-### Environment Variables
-
-Create a `.env.local` file in the project root:
-
-```env
-# App
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_nextauth_secret
-
-# Backend API
-NEXT_PUBLIC_API_URL=https://your-backend-api.com/api/v1
-
-# Cloudinary
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-# EmailJS
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-> ⚠️ **Never commit `.env.local` to version control.**
-
-### Run Development Server
-
-```bash
 npm run dev
 ```
 
@@ -126,66 +74,49 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 📁 Project Structure
+## 🔐 Environment Variables
 
-```
-smart-cse/
-├── app/
-│   ├── (auth)/               # Login, register pages
-│   ├── admin/                # Admin panel (protected)
-│   ├── teacher/              # Teacher portal (protected)
-│   ├── dashboard/            # Student dashboard (protected)
-│   └── api/                  # Next.js API routes
-├── components/
-│   ├── ui/                   # shadcn/ui base components
-│   └── ...                   # Shared feature components
-├── lib/
-│   ├── axiosInstance.ts      # Axios with auto sign-out interceptor
-│   └── utils.ts              # Utility functions
-├── middleware.ts              # Role-based route protection
-├── types/                    # TypeScript type definitions
-└── public/                   # Static assets
+Create a `.env.local` file in the project root:
+
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_nextauth_secret
+
+NEXT_PUBLIC_API_URL=https://smart-cse-server-eta.vercel.app
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
----
-
-## 📜 Available Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
+> ⚠️ **Never commit `.env.local` to version control.**
 
 ---
 
-## 🔌 API Integration
+## 🛠️ Tech Stack
 
-All API calls go through a shared **Axios instance** (`lib/axiosInstance.ts`) that:
-
-- Points to `NEXT_PUBLIC_API_URL` as the base URL
-- Automatically calls `signOut()` and redirects to `/login` on any `401` or `403` response
-
----
-
-## 🚢 Deployment
-
-### Deploy on Vercel (Recommended)
-
-1. Push your repository to GitHub
-2. Import the project on [Vercel](https://vercel.com/new)
-3. Add all environment variables in the Vercel dashboard
-4. Deploy
-
----
-
-## 🔐 Security Notes
-
-- All protected routes (`/admin`, `/teacher`, `/dashboard`) are guarded by `middleware.ts`
-- Role mismatch redirects users to their correct home route — no unauthorized access
-- Expired or invalid sessions auto-sign-out via the Axios interceptor
-- Keep `NEXTAUTH_SECRET` long, random, and never committed to git
+| Layer         | Technology                           |
+| ------------- | ------------------------------------ |
+| Framework     | Next.js 16 (App Router)              |
+| Language      | TypeScript                           |
+| Styling       | Tailwind CSS v4 + tailwind-merge     |
+| UI Components | shadcn/ui (Radix UI primitives)      |
+| Auth          | NextAuth.js                          |
+| Forms         | React Hook Form + Zod                |
+| Data Fetching | Axios (auto sign-out on 401/403)     |
+| Charts        | Recharts                             |
+| Animations    | Framer Motion                        |
+| File Storage  | Cloudinary + next-cloudinary         |
+| PDF Export    | jsPDF + jsPDF-AutoTable              |
+| Email         | EmailJS                              |
+| Date Handling | date-fns, react-day-picker           |
+| Notifications | React Hot Toast, Sonner, SweetAlert2 |
+| Ratings       | react-simple-star-rating             |
+| Theme         | next-themes (dark/light mode)        |
 
 ---
 
