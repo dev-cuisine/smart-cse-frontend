@@ -1,32 +1,32 @@
-# 🎓 Smart CSE — Department Management Platform
+# Smart CSE — Department Management Platform
 
 A comprehensive academic management system for the **CSE Department**, built with **Next.js 16**. Students, teachers, and admins each get a dedicated portal to manage all department activities in one place.
 
 ---
 
-## 📋 Description
+##  Description
 
 Smart CSE is a full-stack academic management platform for the CSE department. It provides role-based portals for students, teachers, and admins — covering everything from attendance and results to class schedules, notices, and analytics. Access is enforced at the middleware level using NextAuth.js.
 
 ---
 
-## ✨ Features
+## Features
 
-### 👨‍🎓 Student
+### Student
 
 - View class schedules, results, and notices
 - View attendance records and track progress
 - Rate teachers and give course feedback
 - Download transcripts and reports (PDF)
 
-### 👨‍🏫 Teacher
+### Teacher
 
 - Manage courses and class schedules
 - Mark and manage student attendance
 - Publish results and grades
 - Post notices and announcements
 
-### 🛡️ Admin
+### Admin
 
 - Manage all student and teacher accounts
 - Oversee department-wide schedules and events
@@ -36,13 +36,13 @@ Smart CSE is a full-stack academic management platform for the CSE department. I
 
 ---
 
-## 🌐 Live URL
+## Live URL
 
 > [https://smart-cse-three.vercel.app](https://smart-cse-three.vercel.app)
 
 ---
 
-## 🔑 Credentials
+## Credentials
 
 | Role    | Email                  | Password |
 | ------- | ---------------------- | -------- |
@@ -50,11 +50,11 @@ Smart CSE is a full-stack academic management platform for the CSE department. I
 | Teacher | `teacher@smartcse.com` | `teacher123` |
 | Admin   | `admin@smartcse.com`   | `admin123` |
 
-> Update with your real credentials before sharing.
+
 
 ---
 
-## 🚀 Installation & Setup
+##  Installation & Setup
 
 ### Prerequisites
 
@@ -64,8 +64,8 @@ Smart CSE is a full-stack academic management platform for the CSE department. I
 ### Steps
 
 ```bash
-git clone https://github.com/imamhossenbu/smart-cse.git
-cd smart-cse
+git clone https://github.com/dev-cuisine/smart-cse-frontend
+cd smart-cse-frontend
 npm install
 npm run dev
 ```
@@ -74,7 +74,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 Create a `.env.local` file in the project root:
 
@@ -93,11 +93,11 @@ NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
-> ⚠️ **Never commit `.env.local` to version control.**
+>  **Never commit `.env.local` to version control.**
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer         | Technology                           |
 | ------------- | ------------------------------------ |
@@ -120,7 +120,7 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
 ---
 
-## 📄 License
+##  License
 
 This project is private and proprietary. All rights reserved.
 
