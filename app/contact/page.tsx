@@ -1,18 +1,16 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-
 import emailjs from "@emailjs/browser";
-import toast, { Toaster } from "react-hot-toast";
-
-
+import toast from "react-hot-toast";
 import { useState } from "react";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { MarketingLayout } from "@/components/marketing/marketing-layout";
+import { PageHero } from "@/components/marketing/page-hero";
+import { SectionHeader } from "@/components/marketing/section-header";
+import { CTABanner } from "@/components/marketing/cta-banner";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -42,9 +40,9 @@ import {
   Calendar,
   Users,
   Zap,
+  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
-import { FadeIn, ScaleIn } from "@/components/ui/motion";
 
 const contactInfo = [
   {
@@ -212,49 +210,33 @@ export default function ContactPage() {
 
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/contact-support.jpg"
-            alt="Contact SmartCSE"
-            fill
-            className="object-cover opacity-10"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/80 to-accent/20" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              Contact Us
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              {"We'd Love to"}{" "}
-              <span className="text-primary">Hear From You</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 text-pretty">
-              Have questions about SmartCSE? Want to schedule a demo? Our team
-              is here to help you transform your academic management.
-            </p>
-          </div>
-        </div>
-      </section>
+    <MarketingLayout>
+      <PageHero
+        icon={MessageCircle}
+        badge="Contact Us"
+        title={
+          <>
+            {"We'd Love to"}{" "}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Hear From You
+            </span>
+          </>
+        }
+        description="Have questions about SmartCSE? Want to schedule a demo? Our team is here to help you transform your academic management."
+      />
 
       {/* Contact Info Cards */}
-      <section className="py-12 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="section-alt py-14">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {contactInfo.map((info, index) => (
               <Card
                 key={index}
-                className="border-border/50 hover:shadow-lg transition-shadow"
+                className="glass-card hover-lift border-border/50"
               >
                 <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <info.icon className="h-6 w-6 text-primary" />
+                  <div className="icon-box mb-4">
+                    <info.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-bold text-foreground mb-3">
                     {info.title}
@@ -274,21 +256,19 @@ export default function ContactPage() {
       </section>
 
       {/* Main Contact Form Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12">
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid gap-12 lg:grid-cols-2">
             {/* Contact Form */}
-            <div>
-              <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-                Send a Message
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Get in Touch
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Fill out the form below and our team will get back to you within
-                24 hours.
-              </p>
+            <div className="glass-card p-8">
+              <SectionHeader
+                badge="Send a Message"
+                badgeVariant="accent"
+                title="Get in Touch"
+                description="Fill out the form below and our team will get back to you within 24 hours."
+                align="left"
+                className="mb-8"
+              />
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
@@ -402,25 +382,23 @@ export default function ContactPage() {
 
             {/* Support Options */}
             <div>
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Support Options
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Other Ways to Reach Us
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Choose the support channel that works best for you.
-              </p>
+              <SectionHeader
+                badge="Support Options"
+                title="Other Ways to Reach Us"
+                description="Choose the support channel that works best for you."
+                align="left"
+                className="mb-8"
+              />
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {supportOptions.map((option, index) => (
                   <Card
                     key={index}
-                    className="border-border/50 hover:shadow-lg transition-shadow cursor-pointer group"
+                    className="glass-card group cursor-pointer border-border/50 hover-lift"
                   >
-                    <CardContent className="p-6 flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                        <option.icon className="h-7 w-7 text-primary" />
+                    <CardContent className="flex items-center gap-4 p-5">
+                      <div className="icon-box-lg shrink-0 group-hover:bg-primary/20">
+                        <option.icon className="h-7 w-7" />
                       </div>
                       <div className="flex-1">
                         <h3 className="font-bold text-foreground mb-1">
@@ -444,20 +422,18 @@ export default function ContactPage() {
       </section>
 
       {/* Schedule Demo Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-                Book a Demo
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                See SmartCSE in Action
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Schedule a personalized demo with our product experts and
-                discover how SmartCSE can transform your institution.
-              </p>
+              <SectionHeader
+                badge="Book a Demo"
+                badgeVariant="accent"
+                title="See SmartCSE in Action"
+                description="Schedule a personalized demo with our product experts and discover how SmartCSE can transform your institution."
+                align="left"
+                className="mb-8"
+              />
               <div className="space-y-4 mb-8">
                 {demoFeatures.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3">
@@ -476,8 +452,8 @@ export default function ContactPage() {
               </Button>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8">
-                <Card className="shadow-xl">
+              <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-primary/10 to-accent/10 p-8">
+                <Card className="glass-card shadow-xl">
                   <CardHeader>
                     <CardTitle>Demo Information</CardTitle>
                   </CardHeader>
@@ -503,28 +479,22 @@ export default function ContactPage() {
       </section>
 
       {/* Office Locations Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              Our Offices
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Visit Us in Person
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We have offices across Bangladesh to serve you better.
-            </p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Our Offices"
+            title="Visit Us in Person"
+            description="We have offices across Bangladesh to serve you better."
+          />
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-3">
             {offices.map((office, index) => (
               <Card
                 key={index}
-                className="border-border/50 hover:shadow-xl transition-shadow"
+                className="glass-card hover-lift border-border/50"
               >
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
                     <MapPin className="h-8 w-8 text-primary" />
                   </div>
                   <Badge variant="secondary" className="mb-3">
@@ -556,9 +526,9 @@ export default function ContactPage() {
 
 
       {/* Map Section */}
-      <section className="py-12 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="bg-card border border-border/50 rounded-2xl overflow-hidden h-[400px]">
+      <section className="section-alt py-12">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="glass-card h-[400px] overflow-hidden">
             <iframe
               src="https://www.google.com/maps?q=Dhaka%20Tech%20Park%2C%20Dhaka%2C%20Bangladesh&output=embed"
               width="100%"
@@ -573,23 +543,18 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              FAQ
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Quick answers to common questions about SmartCSE.
-            </p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="FAQ"
+            badgeVariant="accent"
+            title="Frequently Asked Questions"
+            description="Quick answers to common questions about SmartCSE."
+          />
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="mx-auto max-w-3xl space-y-3">
             {faqs.map((faq, index) => (
-              <Card key={index} className="border-border/50">
+              <Card key={index} className="glass-card border-border/50">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-foreground mb-2">
                     {faq.question}
@@ -611,109 +576,38 @@ export default function ContactPage() {
       </section>
 
       {/* Social Media Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              Connect With Us
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Follow Us on Social Media
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Stay updated with the latest news, updates, and tips from
-              SmartCSE.
-            </p>
-            <div className="flex justify-center gap-4">
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-14 h-14 rounded-full p-0 bg-transparent"
-              >
-                <Facebook className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-14 h-14 rounded-full p-0 bg-transparent"
-              >
-                <Twitter className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-14 h-14 rounded-full p-0 bg-transparent"
-              >
-                <Linkedin className="h-6 w-6" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-14 h-14 rounded-full p-0 bg-transparent"
-              >
-                <Youtube className="h-6 w-6" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-16">
-            <div className="max-w-2xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-                Subscribe to Our Newsletter
-              </h2>
-              <p className="text-primary-foreground/80 mb-8">
-                Get the latest updates, tips, and news delivered directly to
-                your inbox.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="bg-background/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60"
-                />
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionHeader
+              badge="Connect With Us"
+              title="Follow Us on Social Media"
+              description="Stay updated with the latest news, updates, and tips from SmartCSE."
+            />
+            <div className="flex justify-center gap-3">
+              {[Facebook, Twitter, Linkedin, Youtube].map((Icon, index) => (
                 <Button
-                  variant="secondary"
-                  className="bg-background text-foreground hover:bg-background/90"
+                  key={index}
+                  variant="outline"
+                  size="lg"
+                  className="h-12 w-12 rounded-xl bg-background/80 p-0 hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
                 >
-                  Subscribe
+                  <Icon className="h-5 w-5" />
                 </Button>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Join thousands of institutions already using SmartCSE to
-              streamline their academic management.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link href="/register">
-                  Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/features">Explore Features</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-     
-      <Footer />
-    </div>
+      <CTABanner
+        title="Subscribe to Our Newsletter"
+        description="Get the latest updates, tips, and news delivered directly to your inbox."
+        actions={[
+          { label: "Start Free Trial", href: "/register" },
+          { label: "Explore Features", href: "/features", variant: "outline" },
+        ]}
+      />
+    </MarketingLayout>
   );
 }

@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/navbar"
+import { MarketingLayout } from "@/components/marketing/marketing-layout"
 import { HeroSection } from "@/components/landing/hero-section"
 import { FeaturesSection } from "@/components/landing/features-section"
 import { StatsSection } from "@/components/landing/stats-section"
@@ -8,12 +8,10 @@ import { BenefitsSection } from "@/components/landing/benefits-section"
 import { TestimonialsSection } from "@/components/landing/testimonials-section"
 import { FAQSection } from "@/components/landing/faq-section"
 import { CTASection } from "@/components/landing/cta-section"
-import { Footer } from "@/components/footer"
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
+    <MarketingLayout>
       <HeroSection />
       <StatsSection />
       <FeaturesSection />
@@ -23,7 +21,6 @@ export default function HomePage() {
       <TestimonialsSection />
       <FAQSection />
       <CTASection />
-      <Footer />
-    </main>
+    </MarketingLayout>
   )
 }

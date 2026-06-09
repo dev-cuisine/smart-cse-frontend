@@ -12,6 +12,7 @@ import {
 } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { FadeIn } from "@/components/ui/motion"
+import { SectionHeader } from "@/components/marketing/section-header"
 
 const features = [
   {
@@ -58,30 +59,23 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="bg-background py-20 md:py-28">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-28">
+      <div className="container mx-auto px-4 lg:px-6">
         <FadeIn>
-          <div className="mx-auto mb-16 max-w-2xl text-center">
-            <span className="mb-4 inline-block text-sm font-medium uppercase tracking-wider text-primary">
-              Features
-            </span>
-            <h2 className="mb-4 text-balance text-3xl font-bold text-foreground md:text-4xl">
-              Everything You Need for Academic Excellence
-            </h2>
-            <p className="text-muted-foreground">
-              SmartCSE provides a comprehensive suite of tools to streamline academic management
-              and enhance productivity for everyone in the department.
-            </p>
-          </div>
+          <SectionHeader
+            badge="Features"
+            title="Everything You Need for Academic Excellence"
+            description="SmartCSE provides a comprehensive suite of tools to streamline academic management and enhance productivity for everyone in the department."
+          />
         </FadeIn>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, index) => (
             <FadeIn key={feature.title} delay={index * 0.1}>
-              <Card className="group border-border/50 bg-card transition-all hover:border-primary/20 hover:shadow-lg hover-lift h-full">
+              <Card className="group h-full border-border/50 bg-card/80 transition-all hover:border-primary/30 hover:shadow-lg hover-lift">
                 <CardContent className="p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-all group-hover:bg-primary/20 group-hover:scale-110">
-                    <feature.icon className="h-6 w-6 text-primary" />
+                  <div className="icon-box mb-4 group-hover:bg-primary/20 group-hover:scale-110">
+                    <feature.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mb-2 font-semibold text-foreground">{feature.title}</h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">

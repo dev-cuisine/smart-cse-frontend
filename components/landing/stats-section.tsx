@@ -36,14 +36,14 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section className="border-y border-border bg-card py-16">
-      <div className="container mx-auto px-4">
+    <section className="section-divider py-16">
+      <div className="container mx-auto px-4 lg:px-6">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {stats.map((stat, index) => (
             <FadeIn key={stat.label} delay={index * 0.1}>
-              <div className="text-center hover-lift">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-transform hover:scale-110">
-                  <stat.icon className="h-6 w-6 text-primary" />
+              <div className="group text-center hover-lift">
+                <div className="icon-box-lg mx-auto mb-4 group-hover:bg-primary/20">
+                  <stat.icon className="h-6 w-6" />
                 </div>
                 <div className="text-3xl font-bold text-foreground md:text-4xl">
                   <CountUp end={stat.value} suffix={stat.suffix} />

@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { MarketingLayout } from "@/components/marketing/marketing-layout";
+import { PageHero } from "@/components/marketing/page-hero";
+import { SectionHeader } from "@/components/marketing/section-header";
+import { CTABanner } from "@/components/marketing/cta-banner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -28,9 +29,9 @@ import {
   CheckCircle2,
   ArrowRight,
   Star,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
-import { FadeIn, ScaleIn } from "@/components/ui/motion";
 
 const mainFeatures = [
   {
@@ -201,72 +202,44 @@ const useCases = [
 
 export default function FeaturesPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-{/* Hero Section */}
-  <section className="relative py-20 lg:py-28 overflow-hidden">
-  <div className="absolute inset-0 z-0">
-    <Image
-      src="/images/features-tech.jpg"
-      alt="SmartCSE Features"
-      fill
-      className="object-cover opacity-10"
-    />
-    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/80 to-accent/20" />
-  </div>
-<div className="container mx-auto px-4 relative z-10">
-  <div className="max-w-3xl mx-auto text-center">
-  <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-  Powerful Features
-  </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              Everything You Need for{" "}
-              <span className="text-primary">Academic Excellence</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 text-pretty">
-              Discover the comprehensive suite of tools designed to streamline
-              academic management and enhance the learning experience.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link href="/register">
-                  Get Started Free <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/contact">Request Demo</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+    <MarketingLayout>
+      <PageHero
+        icon={Sparkles}
+        badge="Powerful Features"
+        title={
+          <>
+            Everything You Need for{" "}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Academic Excellence
+            </span>
+          </>
+        }
+        description="Discover the comprehensive suite of tools designed to streamline academic management and enhance the learning experience."
+        actions={[
+          { label: "Get Started Free", href: "/register" },
+          { label: "Request Demo", href: "/contact", variant: "outline" },
+        ]}
+      />
 
       {/* Main Features Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              Core Features
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Powerful Tools for Modern Education
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our platform offers a comprehensive set of features designed to
-              meet the needs of modern academic institutions.
-            </p>
-          </div>
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Core Features"
+            badgeVariant="accent"
+            title="Powerful Tools for Modern Education"
+            description="Our platform offers a comprehensive set of features designed to meet the needs of modern academic institutions."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {mainFeatures.map((feature, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 border-border/50 hover:border-primary/30"
+                className="group glass-card hover-lift border-border/50 hover:border-primary/30"
               >
                 <CardHeader>
-                  <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="h-7 w-7 text-primary" />
+                  <div className="icon-box-lg mb-4 group-hover:bg-primary/20">
+                    <feature.icon className="h-7 w-7" />
                   </div>
                   <CardTitle className="text-xl">{feature.title}</CardTitle>
                 </CardHeader>
@@ -290,20 +263,17 @@ export default function FeaturesPage() {
       </section>
 
       {/* Feature Showcase Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Smart Dashboard
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                All Your Academic Data in One Place
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Our intuitive dashboard provides a comprehensive overview of all
-                academic activities, helping you make informed decisions quickly.
-              </p>
+              <SectionHeader
+                badge="Smart Dashboard"
+                title="All Your Academic Data in One Place"
+                description="Our intuitive dashboard provides a comprehensive overview of all academic activities, helping you make informed decisions quickly."
+                align="left"
+                className="mb-8"
+              />
               <div className="space-y-4">
                 {[
                   "Real-time statistics and analytics",
@@ -321,8 +291,8 @@ export default function FeaturesPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8">
-                <div className="bg-card rounded-xl shadow-2xl p-6 space-y-4">
+              <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-primary/10 to-accent/10 p-8">
+                <div className="glass-card space-y-4 p-6 shadow-2xl">
                   <div className="flex items-center justify-between">
                     <h3 className="font-semibold">Dashboard Overview</h3>
                     <Badge variant="secondary">Live</Badge>
@@ -353,30 +323,24 @@ export default function FeaturesPage() {
       </section>
 
       {/* Additional Features Grid */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              More Features
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              And Much More...
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore additional features that make SmartCSE the complete
-              solution for academic management.
-            </p>
-          </div>
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="More Features"
+            badgeVariant="accent"
+            title="And Much More..."
+            description="Explore additional features that make SmartCSE the complete solution for academic management."
+          />
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {additionalFeatures.map((feature, index) => (
               <Card
                 key={index}
-                className="text-center hover:shadow-lg transition-shadow border-border/50"
+                className="glass-card hover-lift border-border/50 text-center"
               >
                 <CardContent className="pt-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <feature.icon className="h-6 w-6 text-primary" />
+                  <div className="icon-box mx-auto mb-4">
+                    <feature.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-semibold mb-2">{feature.title}</h3>
                   <p className="text-sm text-muted-foreground">
@@ -390,24 +354,17 @@ export default function FeaturesPage() {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              Why SmartCSE
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              SmartCSE vs Traditional Methods
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              See how SmartCSE transforms academic management compared to
-              traditional approaches.
-            </p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Why SmartCSE"
+            title="SmartCSE vs Traditional Methods"
+            description="See how SmartCSE transforms academic management compared to traditional approaches."
+          />
 
-          <div className="max-w-3xl mx-auto">
-            <Card className="overflow-hidden">
-              <div className="grid grid-cols-3 bg-secondary/50 p-4 font-semibold">
+          <div className="mx-auto max-w-3xl">
+            <Card className="glass-card overflow-hidden border-border/50">
+              <div className="grid grid-cols-3 bg-primary/5 p-4 text-sm font-semibold">
                 <div>Feature</div>
                 <div className="text-center">SmartCSE</div>
                 <div className="text-center">Traditional</div>
@@ -432,26 +389,20 @@ export default function FeaturesPage() {
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              Use Cases
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Designed for Everyone
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              SmartCSE caters to the unique needs of students, teachers, and
-              administrators alike.
-            </p>
-          </div>
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Use Cases"
+            badgeVariant="accent"
+            title="Designed for Everyone"
+            description="SmartCSE caters to the unique needs of students, teachers, and administrators alike."
+          />
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-3">
             {useCases.map((useCase, index) => (
               <Card
                 key={index}
-                className="hover:shadow-xl transition-shadow border-border/50"
+                className="glass-card hover-lift border-border/50"
               >
                 <CardHeader>
                   <CardTitle className="text-xl">{useCase.title}</CardTitle>
@@ -476,9 +427,9 @@ export default function FeaturesPage() {
       </section>
 
       {/* Integration Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="order-2 lg:order-1">
               <div className="grid grid-cols-3 gap-4">
                 {[
@@ -491,7 +442,7 @@ export default function FeaturesPage() {
                 ].map((brand, index) => (
                   <div
                     key={index}
-                    className="bg-card border border-border/50 rounded-xl p-6 flex items-center justify-center hover:shadow-lg transition-shadow"
+                    className="glass-card flex items-center justify-center p-6 hover-lift"
                   >
                     <span className="font-semibold text-muted-foreground">
                       {brand}
@@ -501,16 +452,13 @@ export default function FeaturesPage() {
               </div>
             </div>
             <div className="order-1 lg:order-2">
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Integrations
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Works with Your Favorite Tools
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                SmartCSE seamlessly integrates with popular tools and platforms
-                you already use, making the transition smooth and effortless.
-              </p>
+              <SectionHeader
+                badge="Integrations"
+                title="Works with Your Favorite Tools"
+                description="SmartCSE seamlessly integrates with popular tools and platforms you already use, making the transition smooth and effortless."
+                align="left"
+                className="mb-8"
+              />
               <Button asChild>
                 <Link href="/contact">
                   Learn More <ArrowRight className="ml-2 h-4 w-4" />
@@ -522,9 +470,10 @@ export default function FeaturesPage() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="glass-card mx-auto max-w-3xl p-10 md:p-14">
             <div className="flex justify-center gap-1 mb-6">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-6 w-6 fill-accent text-accent" />
@@ -541,44 +490,19 @@ export default function FeaturesPage() {
                 Head of CSE Department, Example University
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-              Ready to Experience These Features?
-            </h2>
-            <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-              Join thousands of institutions already using SmartCSE to
-              streamline their academic management.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-background text-foreground hover:bg-background/90"
-                asChild
-              >
-                <Link href="/register">Start Free Trial</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent"
-                asChild
-              >
-                <Link href="/contact">Contact Sales</Link>
-              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <Footer />
-    </div>
+      <CTABanner
+        title="Ready to Experience These Features?"
+        description="Join thousands of institutions already using SmartCSE to streamline their academic management."
+        actions={[
+          { label: "Start Free Trial", href: "/register" },
+          { label: "Contact Sales", href: "/contact", variant: "outline" },
+        ]}
+      />
+    </MarketingLayout>
   );
 }

@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
+import { MarketingLayout } from "@/components/marketing/marketing-layout";
+import { PageHero } from "@/components/marketing/page-hero";
+import { SectionHeader } from "@/components/marketing/section-header";
+import { CTABanner } from "@/components/marketing/cta-banner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Target,
   Eye,
@@ -19,13 +19,12 @@ import {
   GraduationCap,
   BookOpen,
   ArrowRight,
-  CheckCircle2,
   Linkedin,
   Twitter,
   Mail,
+  Building2,
 } from "lucide-react";
 import Link from "next/link";
-import { FadeIn, CountUp } from "@/components/ui/motion";
 
 const stats = [
   { value: "50+", label: "Institutions" },
@@ -157,47 +156,31 @@ const partners = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/about-team.jpg"
-            alt="SmartCSE Team"
-            fill
-            className="object-cover opacity-10"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/80 to-accent/20" />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              About SmartCSE
-            </Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              Transforming Academic Management{" "}
-              <span className="text-primary">Since 2020</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 text-pretty">
-              We are on a mission to revolutionize how CSE departments manage
-              their academic operations through innovative technology solutions.
-            </p>
-          </div>
-        </div>
-      </section>
+    <MarketingLayout>
+      <PageHero
+        icon={Building2}
+        badge="About SmartCSE"
+        title={
+          <>
+            Transforming Academic Management{" "}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Since 2020
+            </span>
+          </>
+        }
+        description="We are on a mission to revolutionize how CSE departments manage their academic operations through innovative technology solutions."
+      />
 
       {/* Stats Section */}
-      <section className="py-12 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="section-alt py-14">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <p className="text-4xl md:text-5xl font-bold text-primary mb-2">
+              <div key={index} className="text-center hover-lift">
+                <p className="mb-2 text-4xl font-bold text-primary md:text-5xl">
                   {stat.value}
                 </p>
-                <p className="text-muted-foreground">{stat.label}</p>
+                <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -205,13 +188,13 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <Card className="border-border/50 hover:shadow-xl transition-shadow">
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid gap-8 md:grid-cols-2">
+            <Card className="glass-card hover-lift border-border/50">
               <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-                  <Target className="h-8 w-8 text-primary" />
+                <div className="icon-box-lg mb-6">
+                  <Target className="h-7 w-7" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground mb-4">
                   Our Mission
@@ -224,10 +207,10 @@ export default function AboutPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="border-border/50 hover:shadow-xl transition-shadow">
+            <Card className="glass-card hover-lift border-border/50">
               <CardContent className="p-8">
-                <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mb-6">
-                  <Eye className="h-8 w-8 text-accent" />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10">
+                  <Eye className="h-7 w-7 text-accent" />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground mb-4">
                   Our Vision
@@ -244,16 +227,16 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Our Story
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                From Classroom Frustration to Digital Solution
-              </h2>
+              <SectionHeader
+                badge="Our Story"
+                title="From Classroom Frustration to Digital Solution"
+                align="left"
+                className="mb-8"
+              />
               <div className="space-y-4 text-muted-foreground">
                 <p>
                   SmartCSE was born out of a real need experienced by educators
@@ -275,23 +258,23 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8">
+              <div className="rounded-2xl border border-border/50 bg-gradient-to-br from-primary/10 to-accent/10 p-8">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-card rounded-xl p-6 shadow-lg">
+                  <div className="glass-card p-6 hover-lift">
                     <GraduationCap className="h-10 w-10 text-primary mb-4" />
                     <p className="font-semibold">For Students</p>
                     <p className="text-sm text-muted-foreground">
                       Easy access to everything
                     </p>
                   </div>
-                  <div className="bg-card rounded-xl p-6 shadow-lg">
+                  <div className="glass-card p-6 hover-lift">
                     <BookOpen className="h-10 w-10 text-accent mb-4" />
                     <p className="font-semibold">For Teachers</p>
                     <p className="text-sm text-muted-foreground">
                       Simplified management
                     </p>
                   </div>
-                  <div className="bg-card rounded-xl p-6 shadow-lg col-span-2">
+                  <div className="glass-card col-span-2 p-6 hover-lift">
                     <Rocket className="h-10 w-10 text-primary mb-4" />
                     <p className="font-semibold">Continuous Innovation</p>
                     <p className="text-sm text-muted-foreground">
@@ -306,20 +289,14 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              Our Journey
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Milestones Along the Way
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              From a small startup to serving institutions nationwide, here is
-              our journey.
-            </p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Our Journey"
+            badgeVariant="accent"
+            title="Milestones Along the Way"
+            description="From a small startup to serving institutions nationwide, here is our journey."
+          />
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
@@ -350,7 +327,7 @@ export default function AboutPage() {
                       </CardContent>
                     </Card>
                   </div>
-                  <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full -translate-x-1/2 mt-6" />
+                  <div className="absolute left-4 md:left-1/2 w-3 h-3 rounded-full border-2 border-background bg-primary -translate-x-1/2 mt-6 ring-4 ring-primary/20" />
                   <div className="md:hidden ml-12">
                     <Card className="border-border/50">
                       <CardContent className="p-6">
@@ -374,30 +351,23 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              Our Values
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              What Drives Us
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our core values guide every decision we make and every feature we
-              build.
-            </p>
-          </div>
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Our Values"
+            title="What Drives Us"
+            description="Our core values guide every decision we make and every feature we build."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {values.map((value, index) => (
               <Card
                 key={index}
-                className="border-border/50 hover:shadow-lg transition-shadow"
+                className="glass-card hover-lift border-border/50"
               >
                 <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <value.icon className="h-6 w-6 text-primary" />
+                  <div className="icon-box mb-4">
+                    <value.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-bold text-foreground mb-2">
                     {value.title}
@@ -413,35 +383,24 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              Our Team
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Meet the People Behind SmartCSE
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              A dedicated team of educators, technologists, and innovators
-              working to transform academic management.
-            </p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Our Team"
+            badgeVariant="accent"
+            title="Meet the People Behind SmartCSE"
+            description="A dedicated team of educators, technologists, and innovators working to transform academic management."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {team.map((member, index) => (
               <Card
                 key={index}
-                className="border-border/50 hover:shadow-xl transition-shadow text-center"
+                className="glass-card hover-lift border-border/50 text-center"
               >
                 <CardContent className="p-6">
-                  <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 relative">
-                    <Image
-                      src={member.image || "/placeholder.svg"}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                    />
+                  <div className="relative mx-auto mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-primary/20 bg-gradient-to-br from-primary/20 to-accent/20">
+                    <Users className="h-10 w-10 text-primary/60" />
                   </div>
                   <h3 className="font-bold text-foreground mb-1">
                     {member.name}
@@ -469,20 +428,17 @@ export default function AboutPage() {
       </section>
 
       {/* Achievements Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                Recognition
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-                Awards & Achievements
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Our commitment to excellence has been recognized by industry
-                leaders and organizations.
-              </p>
+              <SectionHeader
+                badge="Recognition"
+                title="Awards & Achievements"
+                description="Our commitment to excellence has been recognized by industry leaders and organizations."
+                align="left"
+                className="mb-8"
+              />
               <div className="space-y-4">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="flex items-center gap-3">
@@ -498,7 +454,7 @@ export default function AboutPage() {
               {[1, 2, 3, 4].map((_, index) => (
                 <div
                   key={index}
-                  className="bg-card border border-border/50 rounded-xl p-8 flex items-center justify-center"
+                  className="glass-card flex items-center justify-center p-8 hover-lift"
                 >
                   <Award className="h-16 w-16 text-primary/30" />
                 </div>
@@ -509,30 +465,24 @@ export default function AboutPage() {
       </section>
 
       {/* Partners Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 bg-accent/10 text-accent hover:bg-accent/20">
-              Our Partners
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Trusted by Leading Institutions
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We are proud to partner with some of the most prestigious
-              educational institutions in Bangladesh.
-            </p>
-          </div>
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <SectionHeader
+            badge="Our Partners"
+            badgeVariant="accent"
+            title="Trusted by Leading Institutions"
+            description="We are proud to partner with some of the most prestigious educational institutions in Bangladesh."
+          />
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {partners.map((partner, index) => (
               <Card
                 key={index}
-                className="border-border/50 hover:shadow-lg transition-shadow"
+                className="glass-card hover-lift border-border/50"
               >
-                <CardContent className="p-6 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <GraduationCap className="h-6 w-6 text-primary" />
+                <CardContent className="flex items-center gap-4 p-5">
+                  <div className="icon-box shrink-0">
+                    <GraduationCap className="h-6 w-6" />
                   </div>
                   <p className="font-medium text-foreground">{partner}</p>
                 </CardContent>
@@ -543,20 +493,14 @@ export default function AboutPage() {
       </section>
 
       {/* Join Us Section */}
-      <section className="py-20 bg-secondary/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-              Join Our Team
-            </Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-              Want to Make a Difference in Education?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              We are always looking for talented individuals who share our
-              passion for transforming education through technology. Check out
-              our open positions.
-            </p>
+      <section className="section-alt py-20 md:py-28">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionHeader
+              badge="Join Our Team"
+              title="Want to Make a Difference in Education?"
+              description="We are always looking for talented individuals who share our passion for transforming education through technology. Check out our open positions."
+            />
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" asChild>
                 <Link href="/contact">
@@ -571,40 +515,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="bg-gradient-to-r from-primary to-primary/80 rounded-3xl p-8 md:p-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
-              Ready to Transform Your Institution?
-            </h2>
-            <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8">
-              Join the growing community of institutions using SmartCSE to
-              modernize their academic management.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-background text-foreground hover:bg-background/90"
-                asChild
-              >
-                <Link href="/register">Get Started Free</Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent"
-                asChild
-              >
-                <Link href="/contact">Schedule a Demo</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+      <CTABanner
+        title="Ready to Transform Your Institution?"
+        description="Join the growing community of institutions using SmartCSE to modernize their academic management."
+        actions={[
+          { label: "Get Started Free", href: "/register" },
+          { label: "Schedule a Demo", href: "/contact", variant: "outline" },
+        ]}
+      />
+    </MarketingLayout>
   );
 }
