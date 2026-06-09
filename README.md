@@ -47,8 +47,8 @@ Smart CSE is a full-stack academic management platform for the CSE department. I
 | Role    | Email                  | Password |
 | ------- | ---------------------- | -------- |
 | Student | `student@smartcse.com` | `123456` |
-| Teacher | `teacher@smartcse.com` | `123456` |
-| Admin   | `admin@smartcse.com`   | `123456` |
+| Teacher | `teacher@smartcse.com` | `teacher123` |
+| Admin   | `admin@smartcse.com`   | `admin123` |
 
 > Update with your real credentials before sharing.
 
