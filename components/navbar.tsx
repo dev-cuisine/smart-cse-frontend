@@ -4,19 +4,18 @@ import Link from "next/link"
 import { useState, useRef } from "react"
 import { signOut } from "next-auth/react"
 import { Button } from "@/components/ui/button"
-import { 
-  Menu, 
-  X, 
-  GraduationCap, 
-  LayoutDashboard, 
-  LogOut 
+import {
+  Menu,
+  X,
+  GraduationCap,
+  LayoutDashboard,
+  LogOut
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useUser } from "@/context/UserContext"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRouter, usePathname } from "next/navigation"
-import logo from "@/public/cse.avif"
 import Image from "next/image"
 
 const navLinks = [
@@ -76,14 +75,14 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-6">
-        
+
         {/* --- LOGO --- */}
         <Link href="/" className="group flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110">
+          <div className="flex h-9 w-9 items-center justify-center transition-transform duration-300 group-hover:scale-110">
             {/* <GraduationCap className="h-5 w-5 text-primary-foreground" /> */}
-            <Image src={logo} alt="SmartCSE Logo" width={34} height={34} className="object-contain" />
+            <Image src={'/cse-logo.png'} alt="SmartCSE Logo" width={60} height={60} className="object-contain" />
           </div>
-          <span className="text-xl font-bold tracking-tighter text-foreground">SmartCSE</span>
+          <span className="text-xl font-bold text-foreground">SmartCSE</span>
         </Link>
 
         {/* --- DESKTOP NAVIGATION --- */}
@@ -122,13 +121,13 @@ export function Navbar() {
               </Button>
             </>
           ) : (
-            <div 
-              className="relative" 
+            <div
+              className="relative"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className={cn(
                   "relative h-10 w-10 rounded-full p-0 transition-all duration-300",
                   isDropdownOpen ? "bg-muted ring-4 ring-primary/10" : "hover:bg-muted"
@@ -160,25 +159,25 @@ export function Navbar() {
                       </p>
                     </div>
                     <div className="h-px bg-border my-1" />
-                    
+
                     <div className="space-y-1">
-                      <Link 
-                        href={getDashboardRoute()} 
+                      <Link
+                        href={getDashboardRoute()}
                         onClick={() => setIsDropdownOpen(false)}
                         className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-black italic uppercase tracking-tight transition-colors hover:bg-accent hover:text-accent-foreground"
                       >
-                        <LayoutDashboard className="h-4 w-4 text-primary" /> 
+                        <LayoutDashboard className="h-4 w-4 text-primary" />
                         {getDashboardLabel()}
                       </Link>
                     </div>
 
                     <div className="h-px bg-border my-1" />
-                    
-                    <button 
+
+                    <button
                       onClick={handleLogOut}
                       className="flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-black italic uppercase tracking-tight text-destructive transition-colors hover:bg-destructive/10"
                     >
-                      <LogOut className="h-4 w-4" /> 
+                      <LogOut className="h-4 w-4" />
                       Sign Out
                     </button>
                   </motion.div>
@@ -228,7 +227,7 @@ export function Navbar() {
                   </Link>
                 )
               })}
-              
+
               <div className="mt-2 border-t pt-4">
                 {isLoggedIn ? (
                   <div className="flex flex-col gap-3">
@@ -244,7 +243,7 @@ export function Navbar() {
                     </div>
                     <Button variant="ghost" asChild className="justify-start gap-2 h-12 font-black italic uppercase tracking-tight" onClick={() => setIsOpen(false)}>
                       <Link href={getDashboardRoute()}>
-                        <LayoutDashboard className="h-4 w-4 text-primary" /> 
+                        <LayoutDashboard className="h-4 w-4 text-primary" />
                         {getDashboardLabel()}
                       </Link>
                     </Button>

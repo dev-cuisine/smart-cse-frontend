@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+// @ts-ignore: CSS side-effect import without type declarations
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import AuthProvider from "@/components/AuthProvider";
@@ -14,19 +15,10 @@ export const metadata: Metadata = {
   title: "SmartCSE - Academic Management Platform",
   description:
     "A comprehensive platform for CSE department academic and administrative management",
-  generator: "v0.app",
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
+        url: "/favicon.png",
         type: "image/svg+xml",
       },
     ],
@@ -42,8 +34,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-       
-         <AuthProvider>
+
+        <AuthProvider>
           <UserProvider>
             {children}
           </UserProvider>
